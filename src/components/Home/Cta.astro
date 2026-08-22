@@ -1,0 +1,40 @@
+---
+import { img } from "../../lib/img";
+---
+
+<section class="relative isolate overflow-hidden bg-ink text-cream">
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <img
+      src={img("aceh-cta", 1600, 900)}
+      alt=""
+      loading="lazy"
+      data-parallax="0.1"
+      class="h-[125%] w-full object-cover opacity-25"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/40"></div>
+  </div>
+
+  <div class="mx-auto flex w-full max-w-6xl flex-col items-start px-4 py-28 sm:py-36">
+    <p data-reveal class="font-montserrat text-xs tracking-[0.35em] uppercase text-taupe">
+      Plan your visit
+    </p>
+    <h2 data-reveal class="mt-6 max-w-3xl font-cinzel text-4xl leading-tight sm:text-5xl lg:text-6xl">
+      History is waiting.<br />
+      <span class="text-taupe">When will you come?</span>
+    </h2>
+    <div data-reveal class="mt-10 flex flex-wrap gap-4">
+      <a
+        href="/visit#tickets"
+        class="rounded-full bg-cream px-8 py-4 font-montserrat text-sm tracking-wide text-ink transition-colors duration-300 hover:bg-taupe hover:text-cream"
+      >
+        Book tickets
+      </a>
+      <a
+        href="/visit"
+        class="rounded-full border border-cream/30 px-8 py-4 font-montserrat text-sm tracking-wide transition-colors duration-300 hover:border-cream"
+      >
+        Opening hours
+      </a>
+    </div>
+  </div>
+</section>

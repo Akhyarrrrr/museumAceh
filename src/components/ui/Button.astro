@@ -1,0 +1,34 @@
+---
+interface Props {
+  href: string;
+  variant?: "solid" | "outline-light" | "outline-dark";
+  class?: string;
+}
+const { href, variant = "solid", class: className = "" } = Astro.props;
+
+const styles = {
+  solid:
+    "bg-coffee text-cream hover:bg-ink",
+  "outline-light":
+    "border border-cream/40 text-cream hover:bg-cream hover:text-ink",
+  "outline-dark":
+    "border border-ink/30 text-ink hover:bg-ink hover:text-cream",
+}[variant];
+---
+
+<a
+  href={href}
+  data-reveal
+  class={`group inline-flex items-center gap-3 rounded-full px-7 py-3.5 font-montserrat text-sm tracking-wide transition-colors duration-300 ${styles} ${className}`}
+>
+  <slot />
+  <svg
+    viewBox="0 0 24 24"
+    class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path d="M5 12h14M13 5l7 7-7 7"></path>
+  </svg>
+</a>

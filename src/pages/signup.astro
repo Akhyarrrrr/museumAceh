@@ -1,0 +1,73 @@
+---
+import AuthLayout from "../layouts/AuthLayout.astro";
+---
+
+<AuthLayout
+  title="Sign Up — Museum Aceh"
+  imageSeed="signup-side"
+  quote="Become part of a century-old story."
+>
+  <h1 data-reveal class="mt-12 text-center font-cinzel text-3xl lg:text-left">Create account</h1>
+  <p data-reveal class="mt-2 text-center text-sm text-coal/60 lg:text-left">
+    Faster ticket booking and event updates, straight to your inbox.
+  </p>
+
+  <form class="mt-10 space-y-6" onsubmit="return false" aria-label="Sign up form">
+    <div class="grid gap-6 sm:grid-cols-2">
+      <label data-reveal class="block">
+        <span class="font-montserrat text-xs uppercase tracking-[0.25em] text-coal/60">First name</span>
+        <input
+          type="text"
+          required
+          placeholder="Rakan"
+          class="mt-2 w-full rounded-lg border border-black/15 bg-paper px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-sand focus:border-coffee"
+        />
+      </label>
+      <label data-reveal class="block">
+        <span class="font-montserrat text-xs uppercase tracking-[0.25em] text-coal/60">Last name</span>
+        <input
+          type="text"
+          required
+          placeholder="Aceh"
+          class="mt-2 w-full rounded-lg border border-black/15 bg-paper px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-sand focus:border-coffee"
+        />
+      </label>
+    </div>
+    <label data-reveal class="block">
+      <span class="font-montserrat text-xs uppercase tracking-[0.25em] text-coal/60">Email</span>
+      <input
+        type="email"
+        required
+        placeholder="you@example.com"
+        class="mt-2 w-full rounded-lg border border-black/15 bg-paper px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-sand focus:border-coffee"
+      />
+    </label>
+    <label data-reveal class="block">
+      <span class="font-montserrat text-xs uppercase tracking-[0.25em] text-coal/60">Password</span>
+      <input
+        type="password"
+        required
+        minlength="8"
+        placeholder="Min. 8 characters"
+        class="mt-2 w-full rounded-lg border border-black/15 bg-paper px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-sand focus:border-coffee"
+      />
+    </label>
+
+    <button
+      type="submit"
+      data-reveal
+      class="w-full rounded-full bg-coffee py-4 font-montserrat text-sm tracking-wide text-cream transition-colors duration-300 hover:bg-ink"
+    >
+      Create account
+    </button>
+
+    <p data-reveal class="text-center font-montserrat text-[11px] leading-relaxed text-mist">
+      By creating an account you agree to our terms & privacy policy.
+    </p>
+  </form>
+
+  <p data-reveal class="mt-8 text-center text-sm text-coal/60">
+    Already have an account?
+    <a href="/login" class="text-coffee underline-offset-4 hover:underline">Login</a>
+  </p>
+</AuthLayout>

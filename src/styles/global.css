@@ -1,0 +1,69 @@
+@import "@fontsource-variable/cinzel";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/montserrat";
+
+@import "tailwindcss";
+
+@theme {
+  --font-dmsans: "DM Sans Variable";
+  --font-montserrat: "Montserrat Variable";
+  --font-cinzel: "Cinzel Variable";
+  --font-sans: var(--font-dmsans);
+
+  --color-cream: #fffbf7;
+  --color-paper: #ffffff;
+  --color-ink: #080808;
+  --color-coal: #212529;
+  --color-coffee: #483c32;
+  --color-taupe: #81715f;
+  --color-sand: #c6c6c6;
+  --color-mist: #909090;
+}
+
+html {
+  scroll-behavior: auto; /* lenis handles it */
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-coal);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-coffee);
+  color: var(--color-cream);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* initial states set by JS get cleared when reduced-motion or before hydration */
+[data-reveal],
+[data-reveal-stagger] > * {
+  will-change: transform, opacity;
+}
+.no-js [data-reveal],
+.no-js [data-reveal-stagger] > * {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

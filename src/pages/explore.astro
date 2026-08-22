@@ -1,0 +1,24 @@
+---
+import Shell from "../layouts/ShellWithNav.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import GalleryList from "../components/Explore/GalleryList.astro";
+import VirtualTour from "../components/Explore/VirtualTour.astro";
+import Outdoor from "../components/Explore/Outdoor.astro";
+import Cta from "../components/Home/Cta.astro";
+---
+
+<Shell
+  title="Museum Aceh — Explore"
+  description="Explore the galleries, virtual tour and outdoor complex of Museum Aceh."
+>
+  <PageHero
+    eyebrow="Explore"
+    title="Wander every corner"
+    description="Twelve permanent galleries, a living outdoor complex and a full virtual tour — start wherever you like."
+    imageSeed="explore-hero"
+  />
+  <GalleryList />
+  <VirtualTour />
+  <Outdoor />
+  <Cta />
+</Shell>

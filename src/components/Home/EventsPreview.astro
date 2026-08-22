@@ -1,0 +1,47 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import EventCard from "../ui/EventCard.astro";
+import Button from "../ui/Button.astro";
+
+const events = [
+  {
+    seed: "event-calek",
+    date: "12",
+    month: "Sep",
+    title: "Calek Traditional Art Performance",
+    time: "10:00 — 12:00",
+    place: "Main Hall",
+  },
+  {
+    seed: "event-seudati",
+    date: "19",
+    month: "Sep",
+    title: "Ratoh Jaroe & Saman Dance Workshop",
+    time: "13:00 — 15:30",
+    place: "Open Stage",
+  },
+  {
+    seed: "event-kaligrafi",
+    date: "26",
+    month: "Sep",
+    title: "Calligraphy Exhibition: Words of Faith",
+    time: "All day",
+    place: "Gallery 4",
+  },
+];
+---
+
+<section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <SectionHeading
+      eyebrow="What's On"
+      title="Upcoming events at the museum"
+      description="Performances, workshops and exhibitions — there is always a story unfolding."
+    />
+    <Button href="/whats-on" variant="outline-dark">See all events</Button>
+  </div>
+
+  <div class="mt-14 grid gap-6 md:grid-cols-3" data-reveal-stagger data-reveal-stagger-step="0.15">
+    {events.map((e) => <EventCard {...e} />)}
+  </div>
+</section>

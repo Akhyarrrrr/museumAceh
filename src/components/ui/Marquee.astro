@@ -1,0 +1,32 @@
+---
+interface Props {
+  items: string[];
+  tone?: "dark" | "light";
+  speed?: number;
+  class?: string;
+}
+const { items, tone = "dark", speed = 50, class: className = "" } = Astro.props;
+// content duplicated once; animations.ts loops x by -50%
+const row = [...items, ...items];
+---
+
+<div
+  class={`overflow-hidden border-y py-5 select-none ${
+    tone === "dark"
+      ? "bg-ink text-cream border-white/10"
+      : "bg-cream text-ink border-black/10"
+  } ${className}`}
+>
+  <div data-marquee data-marquee-speed={speed} class="flex w-max items-center gap-10">
+    {
+      row.map((t) => (
+        <span class="flex shrink-0 items-center gap-10 font-cinzel text-xl sm:text-2xl whitespace-nowrap uppercase">
+          {t}
+          <svg viewBox="0 0 24 24" class="h-4 w-4 text-taupe" fill="currentColor">
+            <path d="M12 2l2.4 7.6H22l-6.2 4.5 2.4 7.4L12 16.9l-6.2 4.6 2.4-7.4L2 9.6h7.6z" />
+          </svg>
+        </span>
+      ))
+    }
+  </div>
+</div>

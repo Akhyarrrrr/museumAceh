@@ -1,0 +1,94 @@
+---
+import Shell from "../layouts/ShellWithNav.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import { img } from "../lib/img";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import EventCard from "../components/ui/EventCard.astro";
+import Marquee from "../components/ui/Marquee.astro";
+
+const categories = ["All", "Exhibition", "Performance", "Workshop", "Talk"];
+
+const featured = {
+  seed: "featured-saman",
+  date: "05",
+  month: "Sep",
+  title: "Saman Night: A Thousand Hands in Motion",
+  time: "19:00 — 21:30",
+  place: "Open Stage",
+};
+
+const events = [
+  { seed: "event-calek", date: "12", month: "Sep", title: "Calek Traditional Art Performance", time: "10:00 — 12:00", place: "Main Hall" },
+  { seed: "event-seudati", date: "19", month: "Sep", title: "Ratoh Jaroe & Saman Dance Workshop", time: "13:00 — 15:30", place: "Open Stage" },
+  { seed: "event-kaligrafi", date: "26", month: "Sep", title: "Calligraphy Exhibition: Words of Faith", time: "All day", place: "Gallery 4" },
+  { seed: "event-sejarah", date: "03", month: "Oct", title: "Public Talk: Reading the Aceh War", time: "15:00 — 17:00", place: "Auditorium" },
+];
+---
+
+<Shell
+  title="Museum Aceh — What's On"
+  description="Upcoming events, performances and exhibitions at Museum Aceh."
+>
+  <PageHero
+    eyebrow="What's on"
+    title="Something is always happening"
+    description="Dances, talks, exhibitions and workshops — check what's coming up during your visit."
+    imageSeed="whatson-hero"
+  />
+
+  <!-- Featured event -->
+  <section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-28">
+    <a href="#" class="group grid items-center gap-10 overflow-hidden lg:grid-cols-2" data-reveal>
+      <div class="relative aspect-[4/3] overflow-hidden lg:aspect-[16/11]">
+        <img
+          src={img(featured.seed, 900, 620)}
+          alt={featured.title}
+          loading="lazy"
+          data-parallax="0.07"
+          class="h-[115%] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        <div class="absolute top-5 left-5 flex flex-col items-center bg-ink px-4 py-3 text-cream">
+          <span class="font-cinzel text-3xl leading-none">{featured.date}</span>
+          <span class="mt-1 font-montserrat text-[10px] uppercase tracking-[0.25em] text-taupe">{featured.month}</span>
+        </div>
+      </div>
+      <div>
+        <p class="font-montserrat text-xs tracking-[0.35em] uppercase text-taupe">Featured event</p>
+        <h2 class="mt-4 font-cinzel text-3xl leading-snug transition-colors group-hover:text-coffee sm:text-4xl">
+          {featured.title}
+        </h2>
+        <p class="mt-5 leading-relaxed text-coal/70">
+          An open-air evening performance of the UNESCO-listed Saman dance,
+          performed by one hundred dancers of Gayo Lues under the museum lights.
+        </p>
+        <p class="mt-5 font-montserrat text-sm uppercase tracking-widest text-mist">
+          {featured.time} · {featured.place} · Free with admission
+        </p>
+      </div>
+    </a>
+  </section>
+
+  <!-- Filter chips (UI only) -->
+  <section class="mx-auto w-full max-w-6xl px-4">
+    <SectionHeading eyebrow="Calendar" title="All upcoming events" />
+    <div class="mt-10 flex flex-wrap gap-3" data-reveal>
+      {
+        categories.map((c, i) => (
+          <button
+            class={`rounded-full px-5 py-2 font-montserrat text-xs uppercase tracking-[0.2em] transition-colors duration-300 ${
+              i === 0 ? "bg-coffee text-cream" : "border border-black/15 text-coal/70 hover:border-coffee hover:text-coffee"
+            }`}
+          >
+            {c}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 grid gap-6 pb-24 sm:grid-cols-2 sm:pb-32 lg:grid-cols-4" data-reveal-stagger data-reveal-stagger-step="0.1">
+      {events.map((e) => <EventCard {...e} />)}
+    </div>
+  </section>
+
+  <Marquee items={["September", "October", "Events Every Week"]} tone="dark" />
+</Shell>

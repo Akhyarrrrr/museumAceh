@@ -1,0 +1,51 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+
+const facilities = [
+  {
+    seed: "fas-parkir",
+    title: "Parking & Access",
+    desc: "Free car and motorcycle parking right at the gate. Drop-off point for tour buses.",
+  },
+  {
+    seed: "fas-musala",
+    title: "Musala",
+    desc: "A quiet prayer space for up to 40 visitors, located beside the main hall.",
+  },
+  {
+    seed: "fas-kantin",
+    title: "Café & Rest Area",
+    desc: "Serves Acehnese coffee and light snacks under the trees of the museum garden.",
+  },
+  {
+    seed: "fas-akses",
+    title: "Accessibility",
+    desc: "Ramps on all public routes, wheelchair loan at the front desk, accessible toilets.",
+  },
+];
+---
+
+<section id="accessibility" class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
+  <SectionHeading
+    eyebrow="Facilities"
+    title="Everything for a comfortable visit"
+  />
+  <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+    {
+      facilities.map((f) => (
+        <div class="group">
+          <div class="aspect-square overflow-hidden">
+            <img
+              src={`https://picsum.photos/seed/${f.seed}/500/500`}
+              alt={f.title}
+              loading="lazy"
+              class="h-full w-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+            />
+          </div>
+          <h3 class="mt-5 font-cinzel text-lg">{f.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-coal/60">{f.desc}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,35 @@
+---
+import { img } from "../../lib/img";
+import Button from "../ui/Button.astro";
+---
+
+<section class="bg-ink text-cream">
+  <div class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
+    <div class="grid items-end gap-8 sm:grid-cols-2">
+      <p data-reveal class="font-montserrat text-xs tracking-[0.35em] uppercase text-taupe">Virtual tour</p>
+      <h2 data-reveal class="max-w-md font-cinzel text-3xl leading-snug sm:text-4xl">
+        Can't make it to Banda Aceh? Walk the museum from anywhere.
+      </h2>
+    </div>
+
+    <a href="#" class="group relative mt-12 block overflow-hidden" data-reveal>
+      <img
+        src={img("virtual-tour", 1600, 800)}
+        alt="Virtual tour preview of Museum Aceh"
+        loading="lazy"
+        data-parallax="0.08"
+        class="h-[115%] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+      />
+      <div class="absolute inset-0 flex items-center justify-center bg-black/35 transition-colors duration-500 group-hover:bg-black/20">
+        <span class="flex h-24 w-24 items-center justify-center rounded-full border border-cream/60 bg-black/30 backdrop-blur-sm transition-transform duration-500 group-hover:scale-110">
+          <svg viewBox="0 0 24 24" class="ml-1 h-8 w-8 text-cream" fill="currentColor">
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </span>
+      </div>
+      <span class="absolute bottom-6 left-6 font-montserrat text-xs uppercase tracking-[0.3em] text-cream/80">
+        360° tour — 14 rooms
+      </span>
+    </a>
+  </div>
+</section>

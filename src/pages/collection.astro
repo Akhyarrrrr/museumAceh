@@ -1,0 +1,21 @@
+---
+import Shell from "../layouts/ShellWithNav.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Grid from "../components/Collection/Grid.astro";
+import HorizontalGallery from "../components/Collection/HorizontalGallery.astro";
+import Cta from "../components/Home/Cta.astro";
+---
+
+<Shell
+  title="Museum Aceh — Collection"
+  description="Explore the collection of Museum Aceh: artifacts, manuscripts, numismatics and fine arts."
+>
+  <PageHero
+    eyebrow="Collection"
+    title="Treasures of Aceh"
+    description="Over two thousand objects spanning five centuries — sultanate relics, war heritage and living craft."
+    imageSeed="collection-hero"
+  />
+  <Grid />
+  <HorizontalGallery />
+</Shell>

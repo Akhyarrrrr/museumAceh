@@ -1,0 +1,37 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+
+const rows = [
+  { day: "Monday — Thursday", time: "08:30 — 16:15" },
+  { day: "Friday", time: "08:30 — 11:30 · 14:00 — 16:15" },
+  { day: "Saturday — Sunday", time: "08:30 — 16:15" },
+  { day: "National holidays", time: "Closed" },
+];
+---
+
+<section id="hours" class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
+  <div class="grid gap-14 lg:grid-cols-2 lg:gap-20">
+    <div>
+      <SectionHeading
+        eyebrow="Opening hours"
+        title="When to visit us"
+        description="Last admission is 30 minutes before closing time. The garden and open-air exhibits close together with the main building."
+      />
+      <p data-reveal class="mt-10 inline-flex items-center gap-3 bg-paper px-5 py-3 font-montserrat text-sm text-coffee">
+        <span class="h-2 w-2 animate-pulse rounded-full bg-emerald-500"></span>
+        The museum is currently open
+      </p>
+    </div>
+
+    <ul class="divide-y divide-black/10 border-y border-black/10">
+      {
+        rows.map((r) => (
+          <li data-reveal class="flex items-center justify-between gap-6 py-6">
+            <span class="font-cinzel text-lg sm:text-xl">{r.day}</span>
+            <span class="font-montserrat text-sm tracking-wide text-mist">{r.time}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

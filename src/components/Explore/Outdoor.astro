@@ -1,0 +1,36 @@
+---
+import { img } from "../../lib/img";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+const spots = [
+  { seed: "outdoor-rumoh", title: "Rumoh Aceh", desc: "A traditional stilt house built without a single nail." },
+  { seed: "outdoor-makam", title: "Royal Tombs", desc: "The resting place of Sultan Iskandar Muda." },
+  { seed: "outdoor-taman", title: "Heritage Garden", desc: "Native flora and open-air monuments." },
+];
+---
+
+<section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
+  <SectionHeading
+    eyebrow="Outdoor complex"
+    title="Beyond the walls"
+    description="The museum grounds are an exhibition of their own — traditional architecture, royal tombs and gardens."
+  />
+  <div class="mt-14 grid gap-6 md:grid-cols-3" data-reveal-stagger>
+    {
+      spots.map((s, i) => (
+        <div class={`group ${i === 1 ? "md:-translate-y-8" : ""}`}>
+          <div class="aspect-[3/4] overflow-hidden">
+            <img
+              src={img(s.seed, 600, 800)}
+              alt={s.title}
+              loading="lazy"
+              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+          <h3 class="mt-5 font-cinzel text-xl">{s.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-coal/60">{s.desc}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

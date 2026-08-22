@@ -1,0 +1,42 @@
+---
+import { img } from "../../lib/img";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+---
+
+<section id="location" class="bg-ink py-24 text-cream sm:py-32">
+  <div class="mx-auto grid w-full max-w-6xl items-center gap-14 px-4 lg:grid-cols-2 lg:gap-20">
+    <div data-reveal>
+      <img
+        src={img("map-aceh", 800, 600)}
+        alt="Map to Museum Aceh"
+        loading="lazy"
+        class="w-full border border-white/15 object-cover grayscale-[30%]"
+      />
+    </div>
+    <div>
+      <SectionHeading
+        eyebrow="Getting here"
+        title="Find us in the heart of Banda Aceh"
+        tone="light"
+      />
+      <ul class="mt-10 space-y-6 text-sm leading-relaxed text-cream/70" data-reveal-stagger>
+        <li class="flex gap-4">
+          <span class="font-montserrat text-xs uppercase tracking-[0.25em] text-taupe">Address</span>
+          <span>Jl. Sultan Alauddin Mahmudsyah No. 8, Kuta Alam, Banda Aceh 23127</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="font-montserrat text-xs uppercase tracking-[0.25em] text-taupe">By car</span>
+          <span>10 minutes from Baiturrahman Grand Mosque, parking available on site.</span>
+        </li>
+        <li class="flex gap-4">
+          <span class="font-montserrat text-xs uppercase tracking-[0.25em] text-taupe">Contact</span>
+          <span>(0651) 22128 · info@museumaceh.id</span>
+        </li>
+      </ul>
+      <div class="mt-10">
+        <Button href="/contact" variant="outline-light">Contact us</Button>
+      </div>
+    </div>
+  </div>
+</section>

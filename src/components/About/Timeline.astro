@@ -1,0 +1,31 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+
+const milestones = [
+  { year: "1915", title: "The first pavilion", desc: "Opened as an ethnographic museum during the colonial era." },
+  { year: "1948", title: "National recognition", desc: "Became one of Indonesia's earliest provincial museums." },
+  { year: "1980", title: "New main building", desc: "The Rumoh Aceh-inspired main hall was inaugurated." },
+  { year: "2004", title: "Surviving the tsunami", desc: "Collection secured; the site became a refuge for survivors." },
+  { year: "2007", title: "Reborn", desc: "Renovated galleries reopened with a modernized permanent exhibition." },
+  { year: "2026", title: "Going digital", desc: "Launch of the online archive and virtual tour program." },
+];
+---
+
+<section class="bg-ink py-24 text-cream sm:py-32">
+  <div class="mx-auto w-full max-w-6xl px-4">
+    <SectionHeading eyebrow="Timeline" title="One century, six chapters" tone="light" />
+
+    <ol class="relative mt-16 space-y-14 border-l border-white/15 pl-8 sm:pl-12">
+      {
+        milestones.map((m) => (
+          <li data-reveal class="relative">
+            <span class="absolute top-1.5 -left-[41px] h-3 w-3 rounded-full border-2 border-taupe bg-ink sm:-left-[57px]" />
+            <p class="font-cinzel text-2xl text-taupe sm:text-3xl">{m.year}</p>
+            <h3 class="mt-2 font-cinzel text-xl">{m.title}</h3>
+            <p class="mt-1 max-w-lg text-sm leading-relaxed text-cream/60">{m.desc}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

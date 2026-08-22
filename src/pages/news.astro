@@ -1,0 +1,102 @@
+---
+import Shell from "../layouts/ShellWithNav.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import { img } from "../lib/img";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import NewsCard from "../components/ui/NewsCard.astro";
+import Cta from "../components/Home/Cta.astro";
+
+const categories = ["All", "Conservation", "Archive", "Community", "Press"];
+
+const featured = {
+  seed: "news-featured",
+  category: "Conservation",
+  title: "Inside the Restoration of the Cakra Donya Bell",
+  excerpt:
+    "After nine months of careful work, the famous bell said to be a gift from Admiral Zheng He returns to public display — cleaner, stronger and with new stories to tell. We followed the conservators through every step.",
+  date: "Aug 18, 2026",
+};
+
+const articles = [
+  { seed: "news-restorasi", category: "Conservation", title: "Restoring the Cakra Donya Bell", excerpt: "A behind-the-scenes look at the months-long conservation process.", date: "Aug 18, 2026" },
+  { seed: "news-arsip", category: "Archive", title: "New Digital Archive Goes Live", excerpt: "Thousands of photographs and documents are now searchable online.", date: "Aug 09, 2026" },
+  { seed: "news-kunjungan", category: "Community", title: "Record School Visits This Semester", excerpt: "Over five thousand students joined guided history programs in six months.", date: "Jul 28, 2026" },
+  { seed: "news-tsunami", category: "Archive", title: "Remembering 2004: New Oral History Project", excerpt: "Collecting survivor testimonies before they fade from living memory.", date: "Jul 15, 2026" },
+  { seed: "news-renovasi", category: "Press", title: "Gallery 4 Reopens After Renovation", excerpt: "The maritime wing returns with double the exhibition space.", date: "Jun 30, 2026" },
+  { seed: "news-penghargaan", category: "Press", title: "Museum Aceh Wins National Heritage Award", excerpt: "Recognized for community engagement and digital innovation.", date: "Jun 12, 2026" },
+];
+---
+
+<Shell
+  title="Museum Aceh — News"
+  description="News and stories from Museum Aceh — conservation, archives and community."
+>
+  <PageHero
+    eyebrow="News"
+    title="Stories behind the stones"
+    description="Updates from the workshops, the archive and the people who make the museum live."
+    imageSeed="news-hero"
+  />
+
+  <!-- Featured article -->
+  <section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-28">
+    <a href="#" class="group grid items-center gap-10 lg:grid-cols-2" data-reveal>
+      <div class="relative aspect-[4/3] overflow-hidden lg:aspect-[16/11]">
+        <img
+          src={img(featured.seed, 900, 620)}
+          alt={featured.title}
+          loading="lazy"
+          data-parallax="0.07"
+          class="h-[115%] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+      </div>
+      <div>
+        <div class="flex items-center gap-3 font-montserrat text-xs tracking-[0.25em] uppercase text-taupe">
+          <span>{featured.category}</span>
+          <span class="h-px w-6 bg-sand"></span>
+          <span class="text-mist">{featured.date}</span>
+        </div>
+        <h2 class="mt-4 font-cinzel text-3xl leading-snug transition-colors group-hover:text-coffee sm:text-4xl">
+          {featured.title}
+        </h2>
+        <p class="mt-5 leading-relaxed text-coal/70">{featured.excerpt}</p>
+        <span class="mt-8 inline-flex items-center gap-2 font-montserrat text-xs uppercase tracking-[0.2em] text-coffee">
+          Read the story
+          <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M13 5l7 7-7 7"></path>
+          </svg>
+        </span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Filter + grid -->
+  <section class="mx-auto w-full max-w-6xl px-4 pb-24 sm:pb-32">
+    <SectionHeading eyebrow="All news" title="Latest updates" />
+    <div class="mt-10 flex flex-wrap gap-3" data-reveal>
+      {
+        categories.map((c, i) => (
+          <button
+            class={`rounded-full px-5 py-2 font-montserrat text-xs uppercase tracking-[0.2em] transition-colors duration-300 ${
+              i === 0 ? "bg-coffee text-cream" : "border border-black/15 text-coal/70 hover:border-coffee hover:text-coffee"
+            }`}
+          >
+            {c}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger data-reveal-stagger-step="0.1">
+      {articles.map((a) => <NewsCard {...a} />)}
+    </div>
+
+    <div class="mt-14 text-center" data-reveal>
+      <button class="rounded-full border border-black/20 px-8 py-3.5 font-montserrat text-sm uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-ink hover:text-cream">
+        Load more
+      </button>
+    </div>
+  </section>
+
+  <Cta />
+</Shell>

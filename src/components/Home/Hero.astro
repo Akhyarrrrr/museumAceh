@@ -1,0 +1,76 @@
+---
+import Button from "../ui/Button.astro";
+import heroVideo from "../../assets/videos/Hero.mp4";
+
+const OPEN_TIME = "8:30 AM";
+const CLOSE_TIME = "4:15 PM";
+---
+
+<section class="relative isolate h-svh overflow-hidden bg-black text-white">
+  <!-- Video background -->
+  <div class="absolute inset-0 -z-10">
+    <video
+      class="h-[115%] w-full object-cover"
+      src={heroVideo}
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      data-parallax="0.08"
+    >
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/80"></div>
+  </div>
+
+  <div class="relative mx-auto flex h-full w-full max-w-6xl flex-col justify-end px-4 pb-24 sm:pb-28">
+    <p data-hero-fade class="font-montserrat text-xs tracking-[0.35em] uppercase text-cream/70">
+      Museum Aceh — Banda Aceh, Indonesia
+    </p>
+
+    <h1 class="mt-6 font-cinzel text-4xl leading-[1.08] sm:text-6xl lg:text-7xl">
+      <span data-hero-line class="block overflow-hidden"><span class="block">Hi, Rakan!</span></span>
+      <span data-hero-line class="block overflow-hidden"><span class="block">Explore Aceh</span></span>
+      <span data-hero-line class="block overflow-hidden"><span class="block text-taupe">with us.</span></span>
+    </h1>
+
+    <div data-hero-fade class="mt-10">
+      <Button href="/visit#tickets" variant="outline-light">Book tickets</Button>
+    </div>
+
+    <!-- Info bar -->
+    <div
+      data-hero-fade
+      class="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/15 pt-6 text-xs text-gray-200 sm:text-[13px]"
+    >
+      <span class="inline-flex items-center gap-2">
+        <span class="relative inline-block h-2.5 w-2.5">
+          <span class="absolute inset-0 animate-ping rounded-full bg-emerald-400/40"></span>
+          <span class="absolute inset-[2px] rounded-full bg-emerald-400"></span>
+        </span>
+        Open today from {OPEN_TIME} to {CLOSE_TIME}
+      </span>
+
+      <a href="/explore" class="group inline-flex items-center gap-2 underline-offset-4 hover:underline">
+        See list of available galleries
+        <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M13 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- scroll cue -->
+  <div data-hero-fade class="absolute bottom-6 left-1/2 -translate-x-1/2">
+    <div class="flex h-10 w-6 items-start justify-center rounded-full border border-white/30 p-1.5">
+      <span class="h-2 w-1 animate-bounce rounded-full bg-cream/70"></span>
+    </div>
+  </div>
+
+  <script>
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) {
+      document.querySelectorAll("video[autoplay]").forEach((v) => (v as HTMLVideoElement).pause());
+    }
+  </script>
+</section>

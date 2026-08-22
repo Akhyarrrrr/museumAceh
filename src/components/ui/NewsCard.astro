@@ -1,0 +1,39 @@
+---
+import { img } from "../../lib/img";
+
+interface Props {
+  seed: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  href?: string;
+}
+const { seed, category, title, excerpt, date, href = "/news" } = Astro.props;
+---
+
+<a
+  href={href}
+  data-reveal
+  class="group block bg-paper transition-shadow duration-300 hover:shadow-xl"
+>
+  <div class="aspect-[16/10] overflow-hidden">
+    <img
+      src={img(seed, 640, 400)}
+      alt={title}
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+    />
+  </div>
+  <div class="border-b-2 border-transparent p-6 transition-colors duration-300 group-hover:border-coffee">
+    <div class="flex items-center gap-3 font-montserrat text-[11px] uppercase tracking-[0.25em] text-taupe">
+      <span>{category}</span>
+      <span class="h-px w-6 bg-sand"></span>
+      <span class="text-mist">{date}</span>
+    </div>
+    <h3 class="mt-3 font-cinzel text-xl leading-snug transition-colors group-hover:text-coffee">
+      {title}
+    </h3>
+    <p class="mt-3 line-clamp-2 text-sm leading-relaxed text-coal/60">{excerpt}</p>
+  </div>
+</a>

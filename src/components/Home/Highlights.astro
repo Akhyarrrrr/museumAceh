@@ -1,0 +1,60 @@
+---
+import { img } from "../../lib/img";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+
+const highlights = [
+  { seed: "kandang-makam", title: "Makam Sultan Iskandar Muda", tag: "Heritage" },
+  { seed: "cakra-donya", title: "Cakra Donya Bell", tag: "Artifact" },
+  { seed: "rumoh-aceh", title: "Rumoh Aceh", tag: "Architecture" },
+  { seed: "pinto-khoe", title: "Pinto Khoe", tag: "Monument" },
+  { seed: "rencong", title: "Rencong Collection", tag: "Artifact" },
+];
+---
+
+<section class="bg-ink py-24 text-cream sm:py-32">
+  <div class="mx-auto w-full max-w-6xl px-4">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <SectionHeading
+        eyebrow="Highlights"
+        title="Pieces that define Aceh"
+        tone="light"
+      />
+      <Button href="/collection" variant="outline-light">View collection</Button>
+    </div>
+
+    <!-- asymmetric editorial grid -->
+    <div class="mt-16 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-12">
+      {
+        highlights.map((h, i) => (
+          <a
+            href="/collection"
+            data-reveal
+            class={`group relative block overflow-hidden ${
+              i === 0
+                ? "col-span-2 row-span-2 aspect-[4/3] lg:col-span-7"
+                : i === 1
+                  ? "aspect-[4/3] lg:col-span-5"
+                  : "aspect-[4/3] lg:col-span-4"
+            }`}
+          >
+            <img
+              src={img(h.seed, 900, 700)}
+              alt={h.title}
+              loading="lazy"
+              data-parallax={i === 0 ? "0.06" : undefined}
+              class={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${i === 0 ? "h-[115%]" : ""}`}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+            <div class="absolute right-5 bottom-5 left-5">
+              <span class="font-montserrat text-[10px] uppercase tracking-[0.3em] text-taupe">
+                {h.tag}
+              </span>
+              <h3 class="mt-1 font-cinzel text-xl sm:text-2xl">{h.title}</h3>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

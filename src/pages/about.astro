@@ -1,0 +1,24 @@
+---
+import Shell from "../layouts/ShellWithNav.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Story from "../components/About/Story.astro";
+import Timeline from "../components/About/Timeline.astro";
+import Values from "../components/About/Values.astro";
+import Cta from "../components/Home/Cta.astro";
+---
+
+<Shell
+  title="Museum Aceh — About"
+  description="The story, timeline and values of Museum Aceh."
+>
+  <PageHero
+    eyebrow="About us"
+    title="Keeper of Acehnese memory"
+    description="More than a building of objects — a century-old institution standing with its people."
+    imageSeed="about-hero"
+  />
+  <Story />
+  <Timeline />
+  <Values />
+  <Cta />
+</Shell>

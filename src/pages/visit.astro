@@ -1,0 +1,26 @@
+---
+import Shell from "../layouts/ShellWithNav.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Hours from "../components/Visit/Hours.astro";
+import Tickets from "../components/Visit/Tickets.astro";
+import Facilities from "../components/Visit/Facilities.astro";
+import Location from "../components/Visit/Location.astro";
+import Marquee from "../components/ui/Marquee.astro";
+---
+
+<Shell
+  title="Museum Aceh — Visit"
+  description="Plan your visit to Museum Aceh: opening hours, tickets, facilities and directions."
+>
+  <PageHero
+    eyebrow="Visit"
+    title="Plan your day at the museum"
+    description="Everything you need for a smooth visit — hours, tickets, how to get here and what to expect on site."
+    imageSeed="visit-hero"
+  />
+  <Hours />
+  <Tickets />
+  <Marquee items={["Open Daily", "8:30 — 16:15", "Banda Aceh"]} tone="light" />
+  <Facilities />
+  <Location />
+</Shell>

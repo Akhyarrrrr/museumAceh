@@ -1,0 +1,57 @@
+---
+import { img } from "../../lib/img";
+
+interface Props {
+  seed: string;
+  date: string;
+  month: string;
+  title: string;
+  time?: string;
+  place?: string;
+  href?: string;
+}
+const {
+  seed,
+  date,
+  month,
+  title,
+  time = "09:00 — 16:00",
+  place = "Museum Aceh",
+  href = "/whats-on",
+} = Astro.props;
+---
+
+<a
+  href={href}
+  data-reveal
+  class="group block bg-paper transition-shadow duration-300 hover:shadow-xl"
+>
+  <div class="relative aspect-[3/2] overflow-hidden">
+    <img
+      src={img(seed, 640, 420)}
+      alt={title}
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+    />
+    <div class="absolute top-4 left-4 flex flex-col items-center bg-ink px-3 py-2 text-cream">
+      <span class="font-cinzel text-2xl leading-none">{date}</span>
+      <span class="mt-1 font-montserrat text-[10px] uppercase tracking-[0.25em] text-taupe">
+        {month}
+      </span>
+    </div>
+  </div>
+  <div class="border-b-2 border-transparent p-6 transition-colors duration-300 group-hover:border-coffee">
+    <p class="font-montserrat text-[11px] uppercase tracking-[0.25em] text-mist">
+      {time} · {place}
+    </p>
+    <h3 class="mt-2 font-cinzel text-xl leading-snug transition-colors group-hover:text-coffee">
+      {title}
+    </h3>
+    <span class="mt-4 inline-flex items-center gap-2 font-montserrat text-xs uppercase tracking-widest text-taupe">
+      Learn more
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M13 5l7 7-7 7"></path>
+      </svg>
+    </span>
+  </div>
+</a>

@@ -1,11 +1,28 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Shell from "../layouts/ShellWithNav.astro";
+import Hero from "../components/Home/Hero.astro";
+import Intro from "../components/Home/Intro.astro";
+import Marquee from "../components/ui/Marquee.astro";
+import Highlights from "../components/Home/Highlights.astro";
+import Stats from "../components/Home/Stats.astro";
+import EventsPreview from "../components/Home/EventsPreview.astro";
+import NewsPreview from "../components/Home/NewsPreview.astro";
+import Cta from "../components/Home/Cta.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Shell
+  title="Museum Aceh — Explore Aceh With Us"
+  description="Guarding the heritage of Aceh: history, culture and resilience under one roof."
+>
+  <Hero />
+  <Marquee
+    items={["History", "Culture", "Resilience", "Heritage", "Aceh"]}
+    tone="dark"
+  />
+  <Intro />
+  <Highlights />
+  <Stats />
+  <EventsPreview />
+  <NewsPreview />
+  <Cta />
+</Shell>

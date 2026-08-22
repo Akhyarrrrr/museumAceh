@@ -1,0 +1,44 @@
+---
+import { img } from "../../lib/img";
+---
+
+<section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
+  <p data-reveal class="font-montserrat text-xs tracking-[0.35em] uppercase text-taupe">
+    The House of History
+  </p>
+  <p
+    data-reveal
+    class="mt-8 max-w-4xl font-cinzel text-2xl leading-snug text-ink sm:text-4xl sm:leading-snug"
+  >
+    Step into a century of stories. From the golden era of the Aceh Sultanate
+    to the unbreakable spirit of its people — every artifact here remembers,
+    so that we never forget.
+  </p>
+
+  <div class="mt-16 grid gap-6 sm:grid-cols-3" data-reveal-stagger>
+    {
+      [
+        { seed: "aceh-kruis", label: "Heritage Artefacts", value: "2.400+ pieces preserved" },
+        { seed: "aceh-rumoh", label: "Traditional Architecture", value: "Rumoh Aceh on site" },
+        { seed: "aceh-taman", label: "Open Every Day", value: "Except national holidays" },
+      ].map((c) => (
+        <div class="group overflow-hidden bg-paper">
+          <div class="aspect-[4/3] overflow-hidden">
+            <img
+              src={img(c.seed, 600, 450)}
+              alt={c.label}
+              loading="lazy"
+              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+          <div class="border-b-2 border-coffee p-5">
+            <h3 class="font-cinzel text-lg">{c.label}</h3>
+            <p class="mt-1 font-montserrat text-xs uppercase tracking-widest text-mist">
+              {c.value}
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

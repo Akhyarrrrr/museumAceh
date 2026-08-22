@@ -1,0 +1,51 @@
+---
+import AuthLayout from "../layouts/AuthLayout.astro";
+---
+
+<AuthLayout
+  title="Login — Museum Aceh"
+  imageSeed="login-side"
+  quote="Every visit begins a new story."
+>
+  <h1 data-reveal class="mt-12 text-center font-cinzel text-3xl lg:text-left">Welcome back</h1>
+  <p data-reveal class="mt-2 text-center text-sm text-coal/60 lg:text-left">
+    Log in to manage your tickets and bookings.
+  </p>
+
+  <form class="mt-10 space-y-6" onsubmit="return false" aria-label="Login form">
+    <label data-reveal class="block">
+      <span class="font-montserrat text-xs uppercase tracking-[0.25em] text-coal/60">Email</span>
+      <input
+        type="email"
+        required
+        placeholder="you@example.com"
+        class="mt-2 w-full rounded-lg border border-black/15 bg-paper px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-sand focus:border-coffee"
+      />
+    </label>
+    <label data-reveal class="block">
+      <span class="flex items-center justify-between font-montserrat text-xs uppercase tracking-[0.25em] text-coal/60">
+        Password
+        <a href="#" class="normal-case tracking-normal text-coffee underline-offset-4 hover:underline">Forgot?</a>
+      </span>
+      <input
+        type="password"
+        required
+        placeholder="••••••••"
+        class="mt-2 w-full rounded-lg border border-black/15 bg-paper px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-sand focus:border-coffee"
+      />
+    </label>
+
+    <button
+      type="submit"
+      data-reveal
+      class="w-full rounded-full bg-coffee py-4 font-montserrat text-sm tracking-wide text-cream transition-colors duration-300 hover:bg-ink"
+    >
+      Login
+    </button>
+  </form>
+
+  <p data-reveal class="mt-8 text-center text-sm text-coal/60">
+    Don't have an account?
+    <a href="/signup" class="text-coffee underline-offset-4 hover:underline">Sign up free</a>
+  </p>
+</AuthLayout>

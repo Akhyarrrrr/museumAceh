@@ -1,0 +1,47 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+
+const values = [
+  {
+    seed: "val-jaga",
+    title: "Preserve",
+    desc: "Every object is conserved with museum-grade care for the next generation.",
+  },
+  {
+    seed: "val-cerita",
+    title: "Narrate",
+    desc: "History told honestly — glory, struggle and recovery alike.",
+  },
+  {
+    seed: "val-buka",
+    title: "Open",
+    desc: "Accessible to everyone, on site and online, in every sense.",
+  },
+];
+---
+
+<section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
+  <SectionHeading
+    eyebrow="What drives us"
+    title="Vision & values"
+    description="To be the leading center of Acehnese heritage — a place where history educates, connects and inspires."
+  />
+  <div class="mt-14 grid gap-6 md:grid-cols-3" data-reveal-stagger>
+    {
+      values.map((v) => (
+        <div class="group bg-paper p-8 transition-shadow duration-300 hover:shadow-xl">
+          <div class="aspect-[5/3] overflow-hidden">
+            <img
+              src={`https://picsum.photos/seed/${v.seed}/500/300`}
+              alt=""
+              loading="lazy"
+              class="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
+            />
+          </div>
+          <h3 class="mt-6 font-cinzel text-xl">{v.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-coal/60">{v.desc}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

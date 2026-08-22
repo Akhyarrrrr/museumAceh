@@ -1,0 +1,46 @@
+---
+import { img } from "../../lib/img";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  imageSeed?: string;
+}
+const { eyebrow, title, description, imageSeed } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-ink text-cream">
+  {
+    imageSeed && (
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        <img
+          src={img(imageSeed, 1600, 900)}
+          alt=""
+          data-parallax="0.12"
+          class="h-[130%] w-full object-cover opacity-30"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-ink" />
+      </div>
+    )
+  }
+
+  <div
+    class="mx-auto flex w-full max-w-6xl flex-col justify-end px-4 pt-44 pb-20 sm:pt-56 sm:pb-24"
+  >
+    <p data-hero-fade class="font-montserrat text-xs tracking-[0.35em] uppercase text-taupe">
+      {eyebrow}
+    </p>
+    <h1 data-hero-line class="mt-5 overflow-hidden font-cinzel text-4xl leading-[1.1] sm:text-6xl lg:text-7xl">
+      <span class="block">{title}</span>
+    </h1>
+    {
+      description && (
+        <p data-hero-fade class="mt-6 max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg">
+          {description}
+        </p>
+      )
+    }
+  </div>
+</section>

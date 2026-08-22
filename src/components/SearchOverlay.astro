@@ -1,0 +1,100 @@
+<div id="search-overlay" class="fixed inset-0 z-[70] invisible opacity-0" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="absolute inset-0 bg-ink/95 backdrop-blur-md" data-search-bg></div>
+
+  <div class="relative mx-auto w-full max-w-3xl px-6 pt-28 sm:pt-36">
+    <!-- input row -->
+    <div data-search-panel>
+      <form class="flex items-center gap-4 border-b border-white/20 pb-4 focus-within:border-taupe transition-colors" onsubmit="return false">
+        <svg viewBox="0 0 24 24" class="h-7 w-7 shrink-0 text-taupe" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search collections, events, galleries…"
+          autocomplete="off"
+          class="w-full bg-transparent font-cinzel text-2xl text-cream outline-none placeholder:text-white/30 sm:text-3xl"
+        />
+        <button type="button" id="search-close" aria-label="Close search" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 text-cream transition-colors hover:border-taupe hover:text-taupe">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 6l12 12M18 6L6 18"></path>
+          </svg>
+        </button>
+      </form>
+
+      <!-- popular searches -->
+      <p class="mt-8 font-montserrat text-xs uppercase tracking-[0.3em] text-taupe">Popular searches</p>
+      <div class="mt-4 flex flex-wrap gap-3">
+        {
+          [
+            { href: "/collection", label: "Cakra Donya" },
+            { href: "/whats-on", label: "Saman Dance" },
+            { href: "/visit#tickets", label: "Tickets & Hours" },
+            { href: "/explore#galleries", label: "Virtual Tour" },
+            { href: "/news", label: "News" },
+          ].map((s) => (
+            <a
+              href={s.href}
+              data-search-chip
+              class="rounded-full border border-white/15 px-5 py-2.5 font-montserrat text-sm text-cream/80 transition-colors duration-300 hover:border-taupe hover:text-taupe"
+            >
+              {s.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <p class="fixed bottom-8 left-1/2 -translate-x-1/2 font-montserrat text-[10px] uppercase tracking-[0.3em] text-cream/30">
+      Press ESC to close
+    </p>
+  </div>
+</div>
+
+<script>
+  import { gsap } from "../lib/animations";
+  import { getLenis } from "../lib/animations";
+
+  const overlay = document.getElementById("search-overlay")!;
+  const input = document.getElementById("search-input") as HTMLInputElement;
+  const closeBtn = document.getElementById("search-close")!;
+
+  const tl = gsap.timeline({ paused: true });
+  tl.set(overlay, { visibility: "visible" })
+    .to(overlay, { opacity: 1, duration: 0.25 })
+    .fromTo(
+      "[data-search-panel]",
+      { y: -40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+      "-=0.05",
+    )
+    .fromTo(
+      "[data-search-chip]",
+      { y: 16, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, ease: "power2.out", stagger: 0.06 },
+      "-=0.25",
+    );
+
+  let open = false;
+  function toggle(force?: boolean) {
+    open = force ?? !open;
+    if (open) {
+      tl.play();
+      getLenis()?.stop();
+      setTimeout(() => input.focus(), 300);
+    } else {
+      tl.reverse();
+      getLenis()?.start();
+      input.value = "";
+      input.blur();
+    }
+  }
+
+  window.addEventListener("search:open", () => toggle(true));
+  closeBtn.addEventListener("click", () => toggle(false));
+  overlay.querySelector("[data-search-bg]")!.addEventListener("click", () => toggle(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && open) toggle(false);
+  });
+</script>

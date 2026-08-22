@@ -1,0 +1,53 @@
+---
+import Layout from "./Layout.astro";
+import { img } from "../lib/img";
+import logoFull from "../assets/images/logoFull.png";
+
+export interface Props {
+  title?: string;
+  imageSeed?: string;
+  quote?: string;
+  quoteBy?: string;
+}
+
+const {
+  title = "Museum Aceh",
+  imageSeed = "auth-museum",
+  quote = "History is not the past. It is the present we carry.",
+  quoteBy = "Museum Aceh",
+} = Astro.props;
+---
+
+<Layout title={title}>
+  <div class="grid min-h-svh lg:grid-cols-2">
+    <!-- image side -->
+    <aside class="relative isolate hidden overflow-hidden bg-ink lg:block">
+      <img
+        src={img(imageSeed, 1000, 1400)}
+        alt=""
+        data-parallax="0.08"
+        class="absolute inset-0 h-[115%] w-full object-cover opacity-60"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
+      <blockquote class="absolute right-12 bottom-16 left-12 text-cream">
+        <p class="font-cinzel text-3xl leading-snug">“{quote}”</p>
+        <footer class="mt-4 font-montserrat text-xs uppercase tracking-[0.3em] text-taupe">
+          — {quoteBy}
+        </footer>
+      </blockquote>
+    </aside>
+
+    <!-- form side -->
+    <main class="flex items-center justify-center bg-cream px-6 py-16 sm:px-12">
+      <div class="w-full max-w-md">
+        <a href="/" class="flex justify-center lg:justify-start">
+          <img src={logoFull.src} alt="Museum Aceh" class="h-14 w-auto" />
+        </a>
+        <slot />
+        <p class="mt-10 text-center font-montserrat text-[11px] uppercase tracking-[0.25em] text-mist">
+          <a href="/" class="transition-colors hover:text-coffee">← Back to museum</a>
+        </p>
+      </div>
+    </main>
+  </div>
+</Layout>

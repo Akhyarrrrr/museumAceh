@@ -1,0 +1,45 @@
+---
+import { img } from "../../lib/img";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
+  <div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+    <div class="relative" data-reveal>
+      <img src={img("about-sejarah", 800, 1000)} alt="Historic building of Museum Aceh" loading="lazy" class="w-full object-cover" />
+      <img
+        src={img("about-detail", 400, 300)}
+        alt=""
+        loading="lazy"
+        class="absolute -right-4 -bottom-10 hidden w-48 border-8 border-cream object-cover shadow-xl sm:block lg:-right-10"
+      />
+    </div>
+    <div>
+      <SectionHeading
+        eyebrow="Our story"
+        title="A museum born from history itself"
+      />
+      <p data-reveal class="mt-8 leading-relaxed text-coal/70">
+        Museum Aceh opened in 1915 as a pavilion of ethnographic objects under
+        the Dutch colonial administration. Over a century later it stands as the
+        keeper of Acehnese memory — surviving conflict, occupation and the 2004
+        tsunami, and reopening stronger each time.
+      </p>
+      <p data-reveal class="mt-5 leading-relaxed text-coal/70">
+        Today the museum cares for more than 2,400 artifacts and welcomes
+        visitors from all over the world to experience the story of a people
+        known as <em>Serambi Mekkah</em> — the Veranda of Mecca.
+      </p>
+      <dl class="mt-10 grid grid-cols-2 gap-8" data-reveal-stagger>
+        <div>
+          <dt class="font-montserrat text-xs uppercase tracking-[0.25em] text-taupe">Founded</dt>
+          <dd class="mt-2 font-cinzel text-3xl">1915</dd>
+        </div>
+        <div>
+          <dt class="font-montserrat text-xs uppercase tracking-[0.25em] text-taupe">Rebuilt after tsunami</dt>
+          <dd class="mt-2 font-cinzel text-3xl">2007</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>

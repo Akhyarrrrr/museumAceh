@@ -1,0 +1,45 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+import NewsCard from "../ui/NewsCard.astro";
+import Button from "../ui/Button.astro";
+
+const articles = [
+  {
+    seed: "news-restorasi",
+    category: "Conservation",
+    title: "Restoring the Cakra Donya Bell",
+    excerpt:
+      "A behind-the-scenes look at the months-long conservation process of Aceh's most famous artifact.",
+    date: "Aug 18, 2026",
+  },
+  {
+    seed: "news-arsip",
+    category: "Archive",
+    title: "New Digital Archive Goes Live",
+    excerpt:
+      "Thousands of photographs and documents from the colonial era are now searchable online.",
+    date: "Aug 09, 2026",
+  },
+  {
+    seed: "news-kunjungan",
+    category: "Community",
+    title: "Record School Visits This Semester",
+    excerpt:
+      "Over five thousand students joined our guided history programs in the past six months.",
+    date: "Jul 28, 2026",
+  },
+];
+---
+
+<section class="bg-cream">
+  <div class="mx-auto w-full max-w-6xl px-4 pb-24 sm:pb-32">
+    <div class="flex flex-wrap items-end justify-between gap-6 border-t border-black/10 pt-24 sm:pt-32">
+      <SectionHeading eyebrow="News" title="Latest from the museum" />
+      <Button href="/news" variant="outline-dark">All news</Button>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3" data-reveal-stagger data-reveal-stagger-step="0.15">
+      {articles.map((a) => <NewsCard {...a} />)}
+    </div>
+  </div>
+</section>
