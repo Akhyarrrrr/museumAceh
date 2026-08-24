@@ -1,0 +1,110 @@
+---
+import Shell from "../../layouts/ShellWithNav.astro";
+import { collectionItems } from "../../lib/data";
+import { img } from "../../lib/img";
+
+export function getStaticPaths() {
+  return collectionItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const related = collectionItems.filter((c) => c.slug !== item.slug).slice(0, 3);
+---
+
+<Shell title={`${item.title} — Museum Aceh Collection`} description={item.desc[0].slice(0, 155)}>
+  <section class="mx-auto w-full max-w-6xl px-4 pt-36 pb-20 sm:pt-44">
+    <a
+      href="/collection"
+      class="inline-flex items-center gap-2 font-montserrat text-xs uppercase tracking-[0.2em] text-taupe transition-colors hover:text-coffee"
+      data-hero-fade
+    >
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5m7-7l-7 7 7 7"></path>
+      </svg>
+      Back to collection
+    </a>
+
+    <div class="mt-10 grid items-start gap-12 lg:grid-cols-2">
+      <div class="relative aspect-[4/5] overflow-hidden bg-sand/30" data-hero-fade>
+        <img
+          src={img(item.seed, 900, 1125)}
+          alt={item.title}
+          data-parallax="0.06"
+          class="h-[115%] w-full object-cover"
+        />
+        <span class="absolute top-4 left-4 bg-cream px-3 py-1 font-montserrat text-[10px] uppercase tracking-[0.25em] text-coal">
+          {item.cat}
+        </span>
+      </div>
+
+      <div class="lg:pt-8">
+        <div class="flex items-center gap-3 font-montserrat text-xs tracking-[0.25em] uppercase text-taupe" data-hero-fade>
+          <span>{item.cat}</span>
+          <span class="h-px w-6 bg-sand"></span>
+          <span class="text-mist">{item.era}</span>
+        </div>
+        <h1 class="mt-4 font-cinzel text-4xl leading-tight sm:text-5xl" data-hero-fade>{item.title}</h1>
+        <div class="mt-8 space-y-5 leading-relaxed text-coal/75">
+          {item.desc.map((p) => <p data-reveal>{p}</p>)}
+        </div>
+
+        <dl class="mt-10 border-t border-black/10 pt-6" data-reveal>
+          <div class="flex justify-between gap-6 py-3">
+            <dt class="font-montserrat text-xs uppercase tracking-[0.2em] text-mist">Era</dt>
+            <dd class="text-right">{item.era}</dd>
+          </div>
+          <div class="flex justify-between gap-6 border-t border-black/5 py-3">
+            <dt class="font-montserrat text-xs uppercase tracking-[0.2em] text-mist">Category</dt>
+            <dd class="text-right">{item.cat}</dd>
+          </div>
+          <div class="flex justify-between gap-6 border-t border-black/5 py-3">
+            <dt class="font-montserrat text-xs uppercase tracking-[0.2em] text-mist">Location</dt>
+            <dd class="text-right">Main Pavilion, Museum Aceh</dd>
+          </div>
+        </dl>
+
+        <div class="mt-10 flex flex-wrap gap-4" data-reveal>
+          <a
+            href="/visit"
+            class="rounded-full bg-coffee px-8 py-3.5 font-montserrat text-sm uppercase tracking-[0.2em] text-cream transition-colors duration-300 hover:bg-ink"
+          >
+            Plan your visit
+          </a>
+          <a
+            href="/contact"
+            class="rounded-full border border-black/20 px-8 py-3.5 font-montserrat text-sm uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-ink hover:text-cream"
+          >
+            Ask a curator
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-black/10 bg-cream">
+    <div class="mx-auto w-full max-w-6xl px-4 py-20 sm:py-24">
+      <h2 class="font-cinzel text-2xl sm:text-3xl">Continue exploring</h2>
+      <div class="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-3" data-reveal-stagger data-reveal-stagger-step="0.1">
+        {
+          related.map((r) => (
+            <a href={`/collection/${r.slug}`} class="group block">
+              <div class="relative aspect-[4/5] overflow-hidden bg-sand/30">
+                <img
+                  src={img(r.seed, 600, 750)}
+                  alt={r.title}
+                  loading="lazy"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <h3 class="mt-4 font-cinzel text-lg transition-colors group-hover:text-coffee">{r.title}</h3>
+              <p class="mt-1 font-montserrat text-xs uppercase tracking-widest text-mist">{r.era}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Shell>

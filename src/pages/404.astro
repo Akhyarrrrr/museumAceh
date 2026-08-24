@@ -1,0 +1,29 @@
+---
+import Shell from "../layouts/ShellWithNav.astro";
+---
+
+<Shell title="Page not found — Museum Aceh">
+  <section class="mx-auto flex min-h-screen w-full max-w-3xl flex-col items-center justify-center px-4 text-center">
+    <p class="font-montserrat text-xs uppercase tracking-[0.3em] text-taupe" data-reveal>404 — Page not found</p>
+    <h1 class="mt-6 font-cinzel text-5xl leading-tight sm:text-7xl" data-hero-fade>
+      Lost in<br />the archive
+    </h1>
+    <p class="mt-8 max-w-md leading-relaxed text-coal/65" data-reveal>
+      The page you are looking for has been moved, renamed, or perhaps never left the storage room.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4" data-reveal>
+      <a
+        href="/"
+        class="rounded-full bg-coffee px-8 py-3.5 font-montserrat text-sm uppercase tracking-[0.2em] text-cream transition-colors duration-300 hover:bg-ink"
+      >
+        Back to home
+      </a>
+      <a
+        href="/collection"
+        class="rounded-full border border-black/20 px-8 py-3.5 font-montserrat text-sm uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-ink hover:text-cream"
+      >
+        Browse collection
+      </a>
+    </div>
+  </section>
+</Shell>

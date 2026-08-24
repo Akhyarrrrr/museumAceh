@@ -2,29 +2,14 @@
 import Shell from "../layouts/ShellWithNav.astro";
 import PageHero from "../components/ui/PageHero.astro";
 import { img } from "../lib/img";
+import { articles } from "../lib/data";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import NewsCard from "../components/ui/NewsCard.astro";
 import Cta from "../components/Home/Cta.astro";
 
 const categories = ["All", "Conservation", "Archive", "Community", "Press"];
 
-const featured = {
-  seed: "news-featured",
-  category: "Conservation",
-  title: "Inside the Restoration of the Cakra Donya Bell",
-  excerpt:
-    "After nine months of careful work, the famous bell said to be a gift from Admiral Zheng He returns to public display — cleaner, stronger and with new stories to tell. We followed the conservators through every step.",
-  date: "Aug 18, 2026",
-};
-
-const articles = [
-  { seed: "news-restorasi", category: "Conservation", title: "Restoring the Cakra Donya Bell", excerpt: "A behind-the-scenes look at the months-long conservation process.", date: "Aug 18, 2026" },
-  { seed: "news-arsip", category: "Archive", title: "New Digital Archive Goes Live", excerpt: "Thousands of photographs and documents are now searchable online.", date: "Aug 09, 2026" },
-  { seed: "news-kunjungan", category: "Community", title: "Record School Visits This Semester", excerpt: "Over five thousand students joined guided history programs in six months.", date: "Jul 28, 2026" },
-  { seed: "news-tsunami", category: "Archive", title: "Remembering 2004: New Oral History Project", excerpt: "Collecting survivor testimonies before they fade from living memory.", date: "Jul 15, 2026" },
-  { seed: "news-renovasi", category: "Press", title: "Gallery 4 Reopens After Renovation", excerpt: "The maritime wing returns with double the exhibition space.", date: "Jun 30, 2026" },
-  { seed: "news-penghargaan", category: "Press", title: "Museum Aceh Wins National Heritage Award", excerpt: "Recognized for community engagement and digital innovation.", date: "Jun 12, 2026" },
-];
+const featured = articles[0];
 ---
 
 <Shell
@@ -40,7 +25,7 @@ const articles = [
 
   <!-- Featured article -->
   <section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-28">
-    <a href="#" class="group grid items-center gap-10 lg:grid-cols-2" data-reveal>
+    <a href={`/news/${featured.slug}`} class="group grid items-center gap-10 lg:grid-cols-2" data-reveal>
       <div class="relative aspect-[4/3] overflow-hidden lg:aspect-[16/11]">
         <img
           src={img(featured.seed, 900, 620)}
@@ -88,7 +73,7 @@ const articles = [
     </div>
 
     <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger data-reveal-stagger-step="0.1">
-      {articles.map((a) => <NewsCard {...a} />)}
+      {articles.slice(1).map((a) => <NewsCard {...a} href={`/news/${a.slug}`} />)}
     </div>
 
     <div class="mt-14 text-center" data-reveal>

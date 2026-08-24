@@ -1,17 +1,11 @@
 ---
 import { img } from "../../lib/img";
+import { collectionItems } from "../../lib/data";
 import SectionHeading from "../ui/SectionHeading.astro";
 
 const categories = ["All", "Artifacts", "Heritage", "Manuscripts", "Numismatics", "Fine Arts"];
 
-const items = [
-  { seed: "col-rencong", title: "Rencong", cat: "Artifacts", era: "Aceh Sultanate" },
-  { seed: "col-naskah", title: "Hikayat Aceh Manuscript", cat: "Manuscripts", era: "17th century" },
-  { seed: "col-koin", title: "Dirham Dirang", cat: "Numismatics", era: "1514–1528" },
-  { seed: "col-pintu", title: "Pinto Khoe Gate", cat: "Heritage", era: "19th century" },
-  { seed: "col-lukisan", title: "Portrait of Cut Nyak Dhien", cat: "Fine Arts", era: "1945" },
-  { seed: "col-topi", title: "Ceremonial Headdress", cat: "Artifacts", era: "18th century" },
-];
+const items = collectionItems;
 ---
 
 <section class="mx-auto w-full max-w-6xl px-4 py-24 sm:py-32">
@@ -41,7 +35,7 @@ const items = [
   <div class="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger data-reveal-stagger-step="0.1">
     {
       items.map((it) => (
-        <a href="#" class="group block">
+        <a href={`/collection/${it.slug}`} class="group block">
           <div class="relative aspect-[4/5] overflow-hidden bg-sand/30">
             <img
               src={img(it.seed, 600, 750)}
