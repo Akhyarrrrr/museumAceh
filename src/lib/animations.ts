@@ -119,7 +119,7 @@ function setupCounters() {
   });
 }
 
-export function setupHeroReveal(scope: ParentNode = document) {
+function setupHeroReveal(scope: ParentNode = document) {
   if (reduced()) return;
   const lines = scope.querySelectorAll<HTMLElement>("[data-hero-line] > *");
   if (!lines.length) return;

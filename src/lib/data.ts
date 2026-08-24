@@ -76,10 +76,6 @@ export const collectionItems: CollectionItem[] = [
   },
 ];
 
-export function findCollectionItem(slug: string) {
-  return collectionItems.find((c) => c.slug === slug);
-}
-
 export interface Article {
   slug: string;
   seed: string;
@@ -174,7 +170,3 @@ export const articles: Article[] = [
     ],
   },
 ];
-
-export function findArticle(slug: string) {
-  return articles.find((a) => a.slug === slug);
-}
